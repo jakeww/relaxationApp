@@ -11,6 +11,7 @@
 		FB8A46DE294D0D5A00DEC09B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A46DD294D0D5A00DEC09B /* ContentView.swift */; };
 		FB8A46E0294D0D5B00DEC09B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB8A46DF294D0D5B00DEC09B /* Assets.xcassets */; };
 		FB8A46E3294D0D5B00DEC09B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB8A46E2294D0D5B00DEC09B /* Preview Assets.xcassets */; };
+		FB8A46EA294D0E2C00DEC09B /* relaxationTechniques.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A46E9294D0E2C00DEC09B /* relaxationTechniques.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		FB8A46DD294D0D5A00DEC09B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FB8A46DF294D0D5B00DEC09B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB8A46E2294D0D5B00DEC09B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FB8A46E9294D0E2C00DEC09B /* relaxationTechniques.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = relaxationTechniques.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				FB8A46DB294D0D5A00DEC09B /* relaxationApp.swift */,
+				FB8A46E9294D0E2C00DEC09B /* relaxationTechniques.swift */,
 				FB8A46DD294D0D5A00DEC09B /* ContentView.swift */,
 				FB8A46DF294D0D5B00DEC09B /* Assets.xcassets */,
 				FB8A46E1294D0D5B00DEC09B /* Preview Content */,
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB8A46EA294D0E2C00DEC09B /* relaxationTechniques.swift in Sources */,
 				FB8A46DE294D0D5A00DEC09B /* ContentView.swift in Sources */,
 				FB8A46DC294D0D5A00DEC09B /* relaxationApp.swift in Sources */,
 			);
