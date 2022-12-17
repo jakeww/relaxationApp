@@ -11,9 +11,10 @@ struct RelaxationTechniquesView: View {
     let techniques = ["Breathing exercises", "Progressive muscle relaxation", "Guided meditation", "Nature sounds", "Yoga"]
 
     @State private var selectedTechnique: Int = 0
-    @State private var showInstructions: Bool = false
-
+    @State private var showBreathingTechnique: Bool = false
+    
     var body: some View {
+        
         VStack {
             Text("Choose a relaxation technique:")
                 .font(.title)
@@ -39,7 +40,7 @@ struct RelaxationTechniquesView: View {
                     // start yoga
                 }
             }) {
-                Text("Play")
+                Text("Select")
                     .font(.title)
                     .foregroundColor(.white)
                     .padding()
@@ -47,22 +48,17 @@ struct RelaxationTechniquesView: View {
                     .cornerRadius(10)
             }
 
-            if showInstructions {
-                VStack(alignment: .leading) {
-                    Text("Instructions:")
-                        .font(.headline)
-                    Text("Close your eyes and take a deep breath in through your nose, filling your lungs completely. Hold your breath for a few seconds, then slowly exhale through your mouth. As you exhale, try to let go of any tension or stress you may be feeling. Repeat this process for a few minutes, focusing on your breath and letting go of any distractions. When you're ready to finish, slowly open your eyes.")
-                        .font(.body)
-                        .padding()
-                }
+            if showBreathingTechnique {
+                BreathingView(start: showBreathingTechnique)
             }
         }
     }
 
     func startBreathingExercise() {
-        showInstructions = true
+        showBreathingTechnique = true
     }
 }
+
 
 
 struct RelaxationTechniquesView_Previews: PreviewProvider {
@@ -70,3 +66,59 @@ struct RelaxationTechniquesView_Previews: PreviewProvider {
         RelaxationTechniquesView()
     }
 }
+
+struct BreathingView: View {
+    @State private var radius: CGFloat = 50
+    @State private var breathIn: Bool = true
+    @State private var breathHold: Bool = false
+    @State private var breathOut: Bool = false
+    @State private var instruction: String = "Breathe In"
+    let start: Bool
+
+    var body: some View {
+        VStack {
+            Text(instruction)
+                .font(.headline)
+                .padding(.leading)
+
+            Circle()
+                .frame(width: radius * 2, height: radius * 2)
+                .foregroundColor(.blue)
+                
+        }
+        .onAppear {
+            self.startBreathing()
+        }
+    }
+
+    init(start: Bool) {
+        self.start = start
+        if start {
+            startBreathing()
+        }
+    }
+
+    func startBreathing() {
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            withAnimation(Animation.easeOut(duration: 1).repeatForever(autoreverses: true)) {
+                if self.breathIn {
+                    self.radius = 75
+                    self.instruction = "Breath In"
+                    self.breathIn = false
+                    self.breathHold = true
+                } else if self.breathHold {
+                    self.radius = 75
+                    self.instruction = "Hold"
+                    self.breathHold = false
+                    self.breathOut = true
+                } else if self.breathOut {
+                    self.radius = 50
+                    self.instruction = "Breathe Out"
+                    self.breathOut = false
+                    self.breathIn = true
+                }
+            }
+        }
+    }//start breathing
+}
+
