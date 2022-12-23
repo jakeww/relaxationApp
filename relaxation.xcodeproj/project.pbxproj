@@ -13,6 +13,10 @@
 		FB8A46E3294D0D5B00DEC09B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB8A46E2294D0D5B00DEC09B /* Preview Assets.xcassets */; };
 		FB8A46EA294D0E2C00DEC09B /* relaxationTechniques.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A46E9294D0E2C00DEC09B /* relaxationTechniques.swift */; };
 		FBAE0C942954B86800AF0BC2 /* breathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAE0C932954B86700AF0BC2 /* breathingView.swift */; };
+		FBAE0C962955268B00AF0BC2 /* homeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAE0C952955268B00AF0BC2 /* homeView.swift */; };
+		FBAE0C9829555DEF00AF0BC2 /* yogaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAE0C9729555DEF00AF0BC2 /* yogaView.swift */; };
+		FBCA894329561CA80032B966 /* guidedMeditationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCA894229561CA80032B966 /* guidedMeditationView.swift */; };
+		FBCA8945295626B80032B966 /* Guided Meditation Compassion.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FBCA8944295624F40032B966 /* Guided Meditation Compassion.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +27,10 @@
 		FB8A46E2294D0D5B00DEC09B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FB8A46E9294D0E2C00DEC09B /* relaxationTechniques.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = relaxationTechniques.swift; sourceTree = "<group>"; };
 		FBAE0C932954B86700AF0BC2 /* breathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = breathingView.swift; sourceTree = "<group>"; };
+		FBAE0C952955268B00AF0BC2 /* homeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeView.swift; sourceTree = "<group>"; };
+		FBAE0C9729555DEF00AF0BC2 /* yogaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yogaView.swift; sourceTree = "<group>"; };
+		FBCA894229561CA80032B966 /* guidedMeditationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guidedMeditationView.swift; sourceTree = "<group>"; };
+		FBCA8944295624F40032B966 /* Guided Meditation Compassion.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Guided Meditation Compassion.m4a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +66,10 @@
 				FB8A46DB294D0D5A00DEC09B /* relaxationApp.swift */,
 				FB8A46E9294D0E2C00DEC09B /* relaxationTechniques.swift */,
 				FBAE0C932954B86700AF0BC2 /* breathingView.swift */,
+				FBAE0C952955268B00AF0BC2 /* homeView.swift */,
+				FBCA894229561CA80032B966 /* guidedMeditationView.swift */,
+				FBCA8944295624F40032B966 /* Guided Meditation Compassion.m4a */,
+				FBAE0C9729555DEF00AF0BC2 /* yogaView.swift */,
 				FB8A46DD294D0D5A00DEC09B /* ContentView.swift */,
 				FB8A46DF294D0D5B00DEC09B /* Assets.xcassets */,
 				FB8A46E1294D0D5B00DEC09B /* Preview Content */,
@@ -132,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB8A46E3294D0D5B00DEC09B /* Preview Assets.xcassets in Resources */,
+				FBCA8945295626B80032B966 /* Guided Meditation Compassion.m4a in Resources */,
 				FB8A46E0294D0D5B00DEC09B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,7 +158,10 @@
 			files = (
 				FB8A46EA294D0E2C00DEC09B /* relaxationTechniques.swift in Sources */,
 				FBAE0C942954B86800AF0BC2 /* breathingView.swift in Sources */,
+				FBAE0C9829555DEF00AF0BC2 /* yogaView.swift in Sources */,
+				FBCA894329561CA80032B966 /* guidedMeditationView.swift in Sources */,
 				FB8A46DE294D0D5A00DEC09B /* ContentView.swift in Sources */,
+				FBAE0C962955268B00AF0BC2 /* homeView.swift in Sources */,
 				FB8A46DC294D0D5A00DEC09B /* relaxationApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

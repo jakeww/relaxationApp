@@ -11,7 +11,7 @@ import SwiftUI
 struct relaxationApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RelaxationTechniquesView()
         }
     }
 }

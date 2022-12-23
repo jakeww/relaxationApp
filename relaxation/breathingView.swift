@@ -15,20 +15,23 @@ struct breathingView: View {
 
     var body: some View {
         ZStack {
+            VStack {
+                ZStack {
+                    Circle()
+                        .frame(width: radius * 7, height: radius * 7)
+                        .foregroundColor(.blue)
+                }
+            }
             Text(instruction)
-                .font(.title)
+                .font(.title2)
+                .fontWeight(.bold)
                 .foregroundColor(.white)
-                   VStack {
-                       ZStack {
-                           Circle()
-                               .frame(width: radius * 10, height: radius * 10)
-                               .foregroundColor(.blue)
-                       }
-                   }
-               }
+                .animation(.easeOut(duration: 0.7))
+        }
+
                .onAppear {
-                   Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { _ in
-                       withAnimation(Animation.easeOut(duration: 4)) {
+                   Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+                       withAnimation(Animation.easeInOut(duration: 3)) {
                            self.startBreathing()
                        }
                    }
@@ -42,11 +45,11 @@ struct breathingView: View {
         switch breathIn {
         case true:
             radius = 75
-            instruction = "Inhale"
+            instruction = "Breathe in"
             breathIn = false
         case false:
             radius = 50
-            instruction = "Exhale"
+            instruction = "Breathe out"
             breathIn = true
         }
     }

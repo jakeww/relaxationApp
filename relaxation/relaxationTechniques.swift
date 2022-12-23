@@ -16,7 +16,7 @@ struct RelaxationTechniquesView: View {
     var body: some View {
         TabView(selection: $selectedTechnique) {
         
-            Text("Home")
+            homeView()
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Home")
@@ -40,7 +40,7 @@ struct RelaxationTechniquesView: View {
                 .tag(2)
 
                    
-             Text("Guided meditation")
+             guidedMeditationView()
                  .tabItem {
                   Image(systemName: "headphones")
                   Text("Meditation")
@@ -48,7 +48,7 @@ struct RelaxationTechniquesView: View {
                 .tag(3)
 
                 
-              Text("Yoga")
+              yogaView()
                  .tabItem {
                   Image(systemName: "peacesign")
                   Text("Yoga")
