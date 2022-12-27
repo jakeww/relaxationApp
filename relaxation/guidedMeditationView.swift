@@ -15,6 +15,9 @@ struct guidedMeditationView: View {
     // The state of the audio player
     @State private var isPlaying: Bool = false
 
+    // The stored time of the audio player when the pause button is pressed
+    @State private var storedTime: TimeInterval = 0
+
     var body: some View {
         VStack {
             // The play button
@@ -43,8 +46,13 @@ struct guidedMeditationView: View {
         }
 
         do {
-            // Create an audio player with the file URL
-            audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
+            // If the audio player is not yet initialized, create a new audio player with the file URL
+            if audioPlayer == nil {
+                audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
+            }
+
+            // Set the current time of the audio player to the stored time
+            audioPlayer?.currentTime = storedTime
 
             // Play the audio
             audioPlayer?.play()
@@ -58,6 +66,9 @@ struct guidedMeditationView: View {
     func pause() {
         audioPlayer?.pause()
         isPlaying = false
+
+        // Store the current time of the audio player
+        storedTime = audioPlayer?.currentTime ?? 0
     }
 
     // Stops the audio player
@@ -65,8 +76,10 @@ struct guidedMeditationView: View {
         audioPlayer?.stop()
         audioPlayer = nil
         isPlaying = false
+        storedTime = 0
     }
 }
+
 
 
 

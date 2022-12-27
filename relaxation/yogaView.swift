@@ -23,7 +23,6 @@ struct yogaView: View {
         ZStack {
             // Background color for the view
             Color.white
-            
             // Button icons that allow the user to select a slideshow
             VStack {
                 HStack {
