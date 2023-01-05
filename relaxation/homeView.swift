@@ -6,12 +6,7 @@
 //
 
 import SwiftUI
-//color scheme
-let champagnePink = Color(red: 237/255, green: 211/255, blue: 196/255)
-let pinkLavender = Color(red: 200/255, green: 173/255, blue: 192/255)
-let mediumSlatePurple = Color(red: 119/255, green: 101/255, blue: 227/255)
-let royalBlueLight = Color(red: 59/255, green: 96/255, blue: 228/255)
-let richBlack = Color(red: 8/255, green: 7/255, blue: 8/255)
+
 
 
 struct homeView: View {
@@ -55,98 +50,101 @@ struct homeView: View {
     @State private var currentIndex = 0
     
     var body: some View {
-        VStack{
-
-            VStack {
-                // Display the "Daily Journal Prompt" label
-                Text("Daily Journal Prompt:")
-                    .font(.headline)
-                    .foregroundColor(champagnePink)
-                // Display the current journal prompt
-                Text(journalPrompts[currentIndex])
-                  .font(.title)
-                  .foregroundColor(pinkLavender)
-                  .minimumScaleFactor(0.5)
-                  .multilineTextAlignment(.center)
-                  .cornerRadius(8)
-                 
-
- 
-                Button(action: {
-                    // Increment the current index, wrapping around if necessary
-                    self.currentIndex = (self.currentIndex + 1) % self.journalPrompts.count
-                }) {
-                    Text("Next Prompt")
-                      .foregroundColor(mediumSlatePurple)
-                      .padding(.all, 10.0)
+        ZStack{
+            VStack{
+                Spacer()
+                VStack {
+                    // Display the "Daily Journal Prompt" label
+                    Text("Daily Journal Prompt:")
+                        .font(.headline)
+                        .foregroundColor(Color("HelitropeGrey"))
+                    // Display the current journal prompt
+                    Text(journalPrompts[currentIndex])
+                        .font(.title)
+                        .foregroundColor(Color("Almond"))
+                        .minimumScaleFactor(0.5)
+                        .multilineTextAlignment(.center)
+                        .cornerRadius(8)
+                    
+                    
+                    
+                    Button(action: {
+                        // Increment the current index, wrapping around if necessary
+                        self.currentIndex = (self.currentIndex + 1) % self.journalPrompts.count
+                    }) {
+                        Text("Next Prompt")
+                            .foregroundColor(Color("HelitropeGrey"))
+                            .padding(.all, 10.0)
+                    }
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color("OxfordBlue")))
+                    
+                    
+                    
                 }
-                .background(RoundedRectangle(cornerRadius: 10).fill(champagnePink))
-
-
-
-            }
-            .background(royalBlueLight) // apply background color to VStack
-
-
-            
-            
-            
-            VStack {
-                Text("Mood Tracker")
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(0..<7, id: \.self) { day in
-                            Button(action: {
-                                self.selectedDay = day
-                            }) {
-                                VStack {
-                                    if let mood = self.moods[day] {
-                                        Text(self.moodIcons[mood])
-                                            .font(.system(size: 50.0))
-                                            .padding(.all, 20.0)
-                                    } else {
-                                        Text(" ")
-                                            .padding()
+                
+                VStack {
+                    Text("Mood Tracker")
+                        .font(.title)
+                        .foregroundColor(Color("HelitropeGrey"))
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(0..<7, id: \.self) { day in
+                                Button(action: {
+                                    self.selectedDay = day
+                                }) {
+                                    VStack {
+                                        if let mood = self.moods[day] {
+                                            Text(self.moodIcons[mood])
+                                                .font(.system(size: 50.0))
+                                                .padding(.all, 20.0)
+                                        } else {
+                                            Text(" ")
+                                                .padding()
+                                        }
+                                        Text(self.days[day])
+                                            .font(.title2)
                                     }
-                                    Text(self.days[day])
-                                        .font(.title2)
                                 }
+                                .background(self.selectedDay == day ? Color.yellow : Color.white)
+                                .foregroundColor(self.selectedDay == day ? Color.black : Color.gray)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.black, lineWidth: 2)
+                                )
                             }
-                            .background(self.selectedDay == day ? Color.yellow : Color.white)
-                            .foregroundColor(self.selectedDay == day ? Color.black : Color.gray)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.black, lineWidth: 2)
-                            )
+                        }
+                     
+                        
+                    }
+                    
+                }
+                
+                if selectedDay != nil {
+                    Picker(selection: $currentMood, label: Text("Mood")) {
+                        ForEach(0..<moodIcons.count, id: \.self) { index in
+                            Text(self.moodIcons[index])
                         }
                     }
-                    .padding(.horizontal)
-                    .frame(height: 200)
-                    .border(Color.gray, width: 1)
-
-                }
-               
-            }
-            
-            if selectedDay != nil {
-                Picker(selection: $currentMood, label: Text("Mood")) {
-                    ForEach(0..<moodIcons.count, id: \.self) { index in
-                        Text(self.moodIcons[index])
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding()
+                    Button(action: {
+                        self.moods[self.selectedDay!] = self.currentMood
+                        self.selectedDay = nil
+                    }) {
+                        Text("Save Mood")
                     }
+                    .padding()
                 }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
-                Button(action: {
-                    self.moods[self.selectedDay!] = self.currentMood
-                    self.selectedDay = nil
-                }) {
-                    Text("Save Mood")
-                }
-                .padding()
-            }
-        }
+                Spacer()
+                
+            }.background(Color("PurpleNavy"))
+                .edgesIgnoringSafeArea(.all)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        }.background(Color("OxfordBlue"))
+            .edgesIgnoringSafeArea(.all)
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         
-    }//body view
+    }
 }
                     
 struct homeView_Previews: PreviewProvider {
