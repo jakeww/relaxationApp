@@ -12,7 +12,6 @@ import UIKit
 
 struct guidedMeditationView: View {
     @State private var audioPlayer: AVAudioPlayer?
-    
     @State private var isPlaying: Bool = false
     
     @State private var storedTime: TimeInterval = 0

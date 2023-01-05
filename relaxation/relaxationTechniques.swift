@@ -31,14 +31,14 @@ struct RelaxationTechniquesView: View {
                 }
                 .tag(1)
 
-      
+      /* maybe in the future but not now
              Text("Progressive muscle relaxation")
                 .tabItem {
                     Image(systemName: "dumbbell.fill")
                     Text("PMR")
                  }
                 .tag(2)
-
+*/
                    
              guidedMeditationView()
                  .tabItem {

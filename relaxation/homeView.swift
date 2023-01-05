@@ -6,6 +6,13 @@
 //
 
 import SwiftUI
+//color scheme
+let champagnePink = Color(red: 237/255, green: 211/255, blue: 196/255)
+let pinkLavender = Color(red: 200/255, green: 173/255, blue: 192/255)
+let mediumSlatePurple = Color(red: 119/255, green: 101/255, blue: 227/255)
+let royalBlueLight = Color(red: 59/255, green: 96/255, blue: 228/255)
+let richBlack = Color(red: 8/255, green: 7/255, blue: 8/255)
+
 
 struct homeView: View {
     // Create an array of mood icons
@@ -22,39 +29,70 @@ struct homeView: View {
     
     let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     
+    
+    // Create an array of affirmations
+    let affirmations = [    "I am worthy and deserving of love and respect.",    "I am capable and strong.",    "I am confident and capable.",    "I am worthy of success and abundance.",    "I am in control of my own happiness."  ]
+    
+    // Use a state variable to keep track of the current index of the array
+    @State private var currentAffirmationIndex = 0
+    
 
     
     // Create an array of journal prompts
-    let journalPrompts = ["What are you grateful for today?", "What did you learn today?", "What is on your mind?", "What are your goals for tomorrow?"]
+    let journalPrompts = [
+      "What are you grateful for today?",
+      "What did you learn today?",
+      "What is on your mind?",
+      "What are your goals for tomorrow?",
+      "How did you take care of yourself today?",
+      "What positive things happened today?",
+      "What is one thing you could have done differently today?",
+      "What are you looking forward to tomorrow?"
+    ]
+
     
     // Use a state variable to keep track of the current index of the array
     @State private var currentIndex = 0
     
     var body: some View {
         VStack{
+
             VStack {
                 // Display the "Daily Journal Prompt" label
                 Text("Daily Journal Prompt:")
                     .font(.headline)
-                    .padding(.vertical, 20)
-                
+                    .foregroundColor(champagnePink)
                 // Display the current journal prompt
                 Text(journalPrompts[currentIndex])
-                    .font(.title)
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 10)
-                    .border(Color.gray, width: 2)
-                
-                // Add a button to cycle through the journal prompts
+                  .font(.title)
+                  .foregroundColor(pinkLavender)
+                  .minimumScaleFactor(0.5)
+                  .multilineTextAlignment(.center)
+                  .cornerRadius(8)
+                 
+
+ 
                 Button(action: {
                     // Increment the current index, wrapping around if necessary
                     self.currentIndex = (self.currentIndex + 1) % self.journalPrompts.count
                 }) {
                     Text("Next Prompt")
+                      .foregroundColor(mediumSlatePurple)
+                      .padding(.all, 10.0)
                 }
-                .padding(.bottom, 20)
-            }//vStack
+                .background(RoundedRectangle(cornerRadius: 10).fill(champagnePink))
+
+
+
+            }
+            .background(royalBlueLight) // apply background color to VStack
+
+
+            
+            
+            
             VStack {
+                Text("Mood Tracker")
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(0..<7, id: \.self) { day in
@@ -67,8 +105,8 @@ struct homeView: View {
                                             .font(.system(size: 50.0))
                                             .padding(.all, 20.0)
                                     } else {
-                                        Text("")
-                                        padding()
+                                        Text(" ")
+                                            .padding()
                                     }
                                     Text(self.days[day])
                                         .font(.title2)
@@ -82,8 +120,12 @@ struct homeView: View {
                             )
                         }
                     }
-                    .padding(.horizontal)//h stack
+                    .padding(.horizontal)
+                    .frame(height: 200)
+                    .border(Color.gray, width: 1)
+
                 }
+               
             }
             
             if selectedDay != nil {
@@ -103,6 +145,7 @@ struct homeView: View {
                 .padding()
             }
         }
+        
     }//body view
 }
                     
