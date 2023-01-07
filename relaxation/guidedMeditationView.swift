@@ -13,11 +13,8 @@ import UIKit
 struct guidedMeditationView: View {
     @State private var audioPlayer: AVAudioPlayer?
     @State private var isPlaying: Bool = false
-    
     @State private var storedTime: TimeInterval = 0
-    
     @State private var progress: Double = 0.0
-    
     @State private var timer: Timer?
     
     var body: some View {
@@ -58,8 +55,6 @@ struct guidedMeditationView: View {
             audioPlayer?.currentTime = storedTime
             audioPlayer?.play()
             isPlaying = true
-            
-            // Start the timer to update the progress bar
             timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
                 self.updateProgress()
             }
@@ -72,8 +67,6 @@ struct guidedMeditationView: View {
         audioPlayer?.pause()
         isPlaying = false
         storedTime = audioPlayer?.currentTime ?? 0
-        
-        // Invalidate the timer
         timer?.invalidate()
     }
     
@@ -82,8 +75,6 @@ struct guidedMeditationView: View {
         audioPlayer = nil
         isPlaying = false
         storedTime = 0
-        
-        // Invalidate the timer
         timer?.invalidate()
     }
     

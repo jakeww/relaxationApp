@@ -86,7 +86,7 @@ struct homeView: View {
                     Text("Mood Tracker")
                         .font(.title)
                         .foregroundColor(Color("HelitropeGrey"))
-                    ScrollView(.horizontal) {
+                    ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(0..<7, id: \.self) { day in
                                 Button(action: {
@@ -105,7 +105,9 @@ struct homeView: View {
                                             .font(.title2)
                                     }
                                 }
-                                .background(self.selectedDay == day ? Color.yellow : Color.white)
+                                .background(self.selectedDay == day ? Color("HelitropeGrey") : Color("PurpleNavy"))
+
+
                                 .foregroundColor(self.selectedDay == day ? Color.black : Color.gray)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 8)
@@ -113,11 +115,9 @@ struct homeView: View {
                                 )
                             }
                         }
-                     
-                        
+                        .padding([.leading, .bottom, .trailing])
                     }
-                    
-                }
+                }.padding(.vertical).background(Color("OxfordBlue"))
                 
                 if selectedDay != nil {
                     Picker(selection: $currentMood, label: Text("Mood")) {
