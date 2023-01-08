@@ -6,35 +6,21 @@
 //
 
 import SwiftUI
+import Foundation
 
 
 
 struct homeView: View {
-    // Create an array of mood icons
+
     let moodIcons = ["😊", "😐", "😟"]
-    
-    // Use a state variable to keep track of the current mood
+   
     @State private var currentMood = 0
-    
-    // Use a state variable to keep track of the moods for each day
     @State private var moods = [Int](repeating: 0, count: 7)
-    
-    // Use a state variable to keep track of the selected day
     @State private var selectedDay: Int? = nil
     
     let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     
-    
-    // Create an array of affirmations
-    let affirmations = [    "I am worthy and deserving of love and respect.",    "I am capable and strong.",    "I am confident and capable.",    "I am worthy of success and abundance.",    "I am in control of my own happiness."  ]
-    
-    // Use a state variable to keep track of the current index of the array
-    @State private var currentAffirmationIndex = 0
-    
-
-    
-    // Create an array of journal prompts
-    let journalPrompts = [
+     var journalPrompts = [
       "What are you grateful for today?",
       "What did you learn today?",
       "What is on your mind?",
@@ -42,50 +28,63 @@ struct homeView: View {
       "How did you take care of yourself today?",
       "What positive things happened today?",
       "What is one thing you could have done differently today?",
-      "What are you looking forward to tomorrow?"
+      "What are you looking forward to tomorrow?",
+      "What are three things you are grateful for today?",
+      "Write about a time when you felt really proud of yourself.",
+      "What are some small things you can do to take care of yourself today?",
+      "What is one thing you can do to bring more joy into your life?",
+      "Write about a place where you feel calm and at peace.",
+      "What are some things that bring you comfort when you're feeling anxious?",
+      "Write about a positive experience you had recently.",
+      "What are some self-care activities you can do to relax and unwind?",
+      "Write about a person who has had a positive impact on your life.",
+      "What are some things you can do to cultivate gratitude in your daily life?"
     ]
 
     
-    // Use a state variable to keep track of the current index of the array
-    @State private var currentIndex = 0
+    
+    @State private var currentIndex: Int = 0
+    @State private var lastIndex: Int = 0
+
+    init() {
+        currentIndex = Int.random(in: 0..<self.journalPrompts.count)
+    }
+
     
     var body: some View {
         ZStack{
             VStack{
                 Spacer()
                 VStack {
-                    // Display the "Daily Journal Prompt" label
                     Text("Daily Journal Prompt:")
                         .font(.headline)
-                        .foregroundColor(Color("HelitropeGrey"))
-                    // Display the current journal prompt
+                        .foregroundColor(Color("CustomWhite"))
                     Text(journalPrompts[currentIndex])
                         .font(.title)
-                        .foregroundColor(Color("Almond"))
+                        .foregroundColor(Color("Cream"))
                         .minimumScaleFactor(0.5)
                         .multilineTextAlignment(.center)
-                        .cornerRadius(8)
-                    
-                    
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(height: 125)
                     
                     Button(action: {
-                        // Increment the current index, wrapping around if necessary
-                        self.currentIndex = (self.currentIndex + 1) % self.journalPrompts.count
+                        repeat {
+                            self.currentIndex = Int.random(in: 0..<self.journalPrompts.count)
+                        } while (self.currentIndex == self.lastIndex)
+                        self.lastIndex = self.currentIndex
                     }) {
                         Text("Next Prompt")
-                            .foregroundColor(Color("HelitropeGrey"))
+                            .foregroundColor(Color("CustomWhite"))
                             .padding(.all, 10.0)
                     }
                     .background(RoundedRectangle(cornerRadius: 10).fill(Color("OxfordBlue")))
-                    
-                    
-                    
+
                 }
                 
                 VStack {
                     Text("Mood Tracker")
                         .font(.title)
-                        .foregroundColor(Color("HelitropeGrey"))
+                        .foregroundColor(Color("Cream"))
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(0..<7, id: \.self) { day in
