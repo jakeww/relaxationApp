@@ -55,18 +55,20 @@ struct homeView: View {
         ZStack{
             VStack{
                 Spacer()
-                VStack {
+                VStack(alignment: .center, spacing: 10) {
                     Text("Daily Journal Prompt:")
                         .font(.headline)
                         .foregroundColor(Color("CustomWhite"))
-                    Text(journalPrompts[currentIndex])
-                        .font(.title)
-                        .foregroundColor(Color("Cream"))
-                        .minimumScaleFactor(0.5)
-                        .multilineTextAlignment(.center)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .frame(height: 125)
-                    
+                    GeometryReader { geometry in
+                        Text(self.journalPrompts[self.currentIndex])
+                            .font(.title)
+                            .foregroundColor(Color("Cream"))
+                            .multilineTextAlignment(.center)
+                            .lineLimit(nil)
+                            .padding(.horizontal)
+                            .frame(width: geometry.size.width, height: geometry.size.height - 50)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                     Button(action: {
                         repeat {
                             self.currentIndex = Int.random(in: 0..<self.journalPrompts.count)
@@ -78,10 +80,11 @@ struct homeView: View {
                             .padding(.all, 10.0)
                     }
                     .background(RoundedRectangle(cornerRadius: 10).fill(Color("OxfordBlue")))
+                }.frame(height: UIScreen.main.bounds.height * 0.3)
 
-                }
-                
-                VStack {
+
+
+               /* VStack {
                     Text("Mood Tracker")
                         .font(.title)
                         .foregroundColor(Color("Cream"))
@@ -116,7 +119,7 @@ struct homeView: View {
                         }
                         .padding([.leading, .bottom, .trailing])
                     }
-                }.padding(.vertical).background(Color("OxfordBlue"))
+                }.padding(.vertical).background(Color("OxfordBlue"))*/
                 
                 if selectedDay != nil {
                     Picker(selection: $currentMood, label: Text("Mood")) {

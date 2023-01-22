@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+let animationState = AnimationState()
+
 struct RelaxationTechniquesView: View {
     let techniques = ["Home","Breathing exercises", "Progressive muscle relaxation", "Guided meditation", "Yoga"]
 
@@ -24,12 +26,12 @@ struct RelaxationTechniquesView: View {
                 .tag(0)
 
           
-            breathingView()
-                .tabItem {
-                    Image(systemName: "wind")
-                    Text("Breathing")
-                }
-                .tag(1)
+            BreathingView(animationState: AnimationState())
+                        .tabItem {
+                            Image(systemName: "wind")
+                            Text("Breathing")
+                        }
+                        .tag(1)
 
       /* maybe in the future but not now
              Text("Progressive muscle relaxation")
@@ -55,7 +57,7 @@ struct RelaxationTechniquesView: View {
                 }
                 .tag(4)
             
-                  }
+                  }.environmentObject(animationState)
               }
           }
 
