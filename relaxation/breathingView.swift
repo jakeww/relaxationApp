@@ -56,7 +56,7 @@ struct BreathingView: View {
                 ZStack {
                     Circle()
                         .frame(width: radius * 7, height: radius * 7)
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color("OxfordBlue"))
                 }
             }
             Text(instruction)
@@ -65,11 +65,11 @@ struct BreathingView: View {
                 .foregroundColor(.white)
                 .animation(.easeOut(duration: 0.7))
             if !isStarting {
-                Button("Begin breathing exercise") {
+                Button("Tap to begin!") {
                     self.isStarting = true
                     self.animationState.isAnimating = true
-                    self.instruction = "Get ready"
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    self.instruction = "Get ready..."
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         if self.timer == nil {
                             self.timer = Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { _ in
                                 self.startBreathing()
@@ -77,14 +77,16 @@ struct BreathingView: View {
                         }
                     }
                 }
+                .font(.title)
+                .fontWeight(.bold)
                 .padding()
-                .background(Color.blue)
-                .foregroundColor(.white)
+                .background(Color("OxfordBlue"))
+                .foregroundColor(Color("Cream"))
                 .cornerRadius(10)
             } else {
                 Circle()
                     .frame(width: radius * 7, height: radius * 7)
-                    .foregroundColor(.blue)
+                    .foregroundColor(Color("OxfordBlue"))
                 Text(instruction)
                     .font(.title2)
                     .fontWeight(.bold)
@@ -108,9 +110,13 @@ struct BreathingView: View {
                     }
                 
             }}
+        .padding(800)
+        .background(Color("PurpleNavy"))
+            .edgesIgnoringSafeArea(.all)
+           
     }
     func startBreathing() {
-        instruction = "Get ready"
+        instruction = "Get ready..."
         withAnimation(Animation.easeInOut(duration: 3)) {
             if self.breathIn {
                 self.instruction = "Breathe in"

@@ -18,28 +18,37 @@ struct guidedMeditationView: View {
     @State private var timer: Timer?
     
     var body: some View {
-        VStack{
-            HStack {
-                Button(action: { self.play() }) {
-                    Image(systemName: "play.square.fill")
-                        .font(.system(size: 50.0))
+        ZStack{
+            VStack{
+                HStack {
+                    Button(action: { self.play() }) {
+                        Image(systemName: "play.square.fill")
+                            .font(.system(size: 50.0))
+                    }
+                    
+                    Button(action: { self.pause() }) {
+                        Image(systemName: "pause.rectangle.fill")
+                            .font(.system(size: 50.0))
+                    }
+                    
+                    Button(action: { self.stop() }) {
+                        Image(systemName: "xmark.square.fill")
+                            .font(.system(size: 50.0))
+                    }
                 }
+                ProgressView("Progress:", value: progress, total: 1.0)
+                    .padding(.top)
+                    .id(progress)
+                    .frame(width: 200, height: 20)
+                    .foregroundColor(Color("CustomWhite"))
+                    .font(.title2)
+                    .fontWeight(.bold)
                 
-                Button(action: { self.pause() }) {
-                    Image(systemName: "pause.rectangle.fill")
-                        .font(.system(size: 50.0))
-                }
-                
-                Button(action: { self.stop() }) {
-                    Image(systemName: "xmark.square.fill")
-                        .font(.system(size: 50.0))
-                }
             }
-            ProgressView("Progress:", value: progress, total: 1.0)
-                .id(progress)
-                .frame(width: 200, height: 20)
-            
-        }
+        }.padding(800)
+            .background(Color("PurpleNavy"))
+                .edgesIgnoringSafeArea(.all)
+        
     }
         
     func play() {
