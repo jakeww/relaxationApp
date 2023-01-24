@@ -69,7 +69,7 @@ struct BreathingView: View {
                     self.isStarting = true
                     self.animationState.isAnimating = true
                     self.instruction = "Get ready..."
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         if self.timer == nil {
                             self.timer = Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { _ in
                                 self.startBreathing()
